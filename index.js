@@ -1,17 +1,19 @@
 // @flow
 
-import React, { Component } from 'react';
-import { NativeModules } from 'react-native';
+import React, { Component, useEffect } from 'react';
+import { NativeModules, TurboModuleRegistry } from 'react-native';
 
 let mounted = 0;
 
-export default class KeepAwake extends Component<{}> {
+const KCKeepAwake = TurboModuleRegistry ? TurboModuleRegistry.get('KeepAwakeNativeModule') : NativeModules.KCKeepAwake;
+
+export default class KeepAwake extends Component {
   static activate() {
-    NativeModules.KCKeepAwake.activate();
+    KCKeepAwake.activate();
   }
 
   static deactivate() {
-    NativeModules.KCKeepAwake.deactivate();
+    KCKeepAwake.deactivate();
   }
 
   componentDidMount() {
@@ -30,3 +32,24 @@ export default class KeepAwake extends Component<{}> {
     return null;
   }
 }
+
+export const activateKeepAwake = () => {
+    KCKeepAwake.activate();
+};
+
+export const deactivateKeepAwake = () => {
+    KCKeepAwake.deactivate();
+};
+
+export const useKeepAwake = () => {
+  useEffect(() => {
+    activateKeepAwake();
+    return () => {
+      deactivateKeepAwake();
+    } 
+  }, []);
+};
+
+
+
+
