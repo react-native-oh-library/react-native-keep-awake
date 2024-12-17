@@ -1,0 +1,11 @@
+[
+    {
+        "Name": "react-native-keep-awake",
+        "License": "MIT License",
+        "License File": "https://github.com/corbt/react-native-keep-awake/blob/master/LICENCE",
+        "Version Number": "4.0.0",
+        "Owner" : "xiafeng@huawei.com",
+        "Upstream URL": "https://github.com/corbt/react-native-keep-awake",
+        "Description": "Keep the screen from going to sleep."
+    }
+]
